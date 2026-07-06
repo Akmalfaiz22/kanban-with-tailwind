@@ -1,0 +1,131 @@
+ <!DOCTYPE html>
+ <html lang="en" id="mode">
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kanban Board</title>
+    <link rel="stylesheet" href="style.css">
+   <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css"
+    rel="stylesheet"
+  />
+ </head>
+ <body class="bg-[#f1f1f1] dark:bg-[#0f1117] dark:text-white">
+
+     <!--nav bar -->
+
+    <nav class="flex items-center justify-between w-full bg-[#FAFAFC]  dark:bg-[#111827] border-b dark:border-[#2a2d35]">
+      <div class="flex">  
+       <i class="ri-kanban-view font-bold text-xl md:text-2xl m-2 text-[#5B4CF5]"></i>
+       <h1 class="font-bold text-xl md:text-2xl mt-2">Kanban Board</h1>
+      </div> 
+     
+      <div class="flex">
+        <i class="ri-user-3-line font-bold text-xl mt-1 mr-2 md:text-2xl text-[#5B4CF5]"></i>
+        <h1 id="username" class="font-bold text-xl mt-2 mr-4 md:text-2xl">UserName</h1>
+     </div>
+    </nav>
+
+<!-- hero section -->
+
+ <section class=" bg-[#FAFAFC] w-auto h-auto mt-16 mb-6 md:ml-40  rounded-md md:w-300 flex flex-col justify-evenly dark:bg-[#181a20] dark:border dark:border-[#2a2d35]">
+    
+    <div class="flex items-center justify-between mb-4">
+         <h2 class="font-bold text-xl md:text-3xl m-2">Kanban Board</h2> 
+         <button id="addTask" class="text-xl md:text-xl m-2 bg-[#5B4CF5] text-white w-28 p-1 rounded-md">+Add Tasks</button>
+    </div>
+
+    <div class=" flex items-center justify-evenly mb-4">
+        <div class="bg-[#e7e7e9] w-34 md:w-40 rounded-md h-28 flex items-center justify-evenly dark:bg-[#111318] dark:border dark:border-[#2a2d35]">
+            <div>
+                <i class="ri-todo-fill text-[#5B4CF5] text-3xl "></i>
+            </div>
+            <div class="">
+                <h3 class="text-md md:text-xl font-bold">To Do</h3>
+                <h2 id="toDoCount" class="font-bold text-xl md:text-2xl">0</h2>
+                <h3 class="text-sm md:text-lg">Tasks</h3>
+            </div>
+        </div>
+        
+        <div class="bg-[#e7e7e9] w-34 md:w-40 rounded-md h-28 flex items-center justify-evenly dark:bg-[#111318] dark:border dark:border-[#2a2d35]">
+            <div>
+                <i class="ri-progress-5-line  text-[#5B4CF5] text-3xl"></i>
+            </div>
+            <div class="">
+                <h3 class="text-md md:text-xl font-bold">To Do</h3>
+                <h2 id="progressCount" class="font-bold text-xl md:text-2xl">0</h2>
+                <h3 class="text-sm md:text-lg">Tasks</h3>
+            </div>
+        </div>
+
+        <div class="bg-[#e7e7e9] w-34 md:w-40 rounded-md h-28 flex items-center justify-evenly dark:bg-[#111318] dark:border dark:border-[#2a2d35]">
+            <div>
+                <i class="ri-shield-check-fill text-[#5B4CF5] text-3xl"></i>
+            </div>
+            <div class="">
+                <h3 class="text-md md:text-xl font-bold">To Do</h3>
+                <h2 id="doneCount" class="font-bold text-xl md:text-2xl">0</h2>
+                <h3 class="text-sm md:text-lg">Tasks</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="flex justify-center items-center mb-2 hidden h-50" id="inputBox">
+        
+       <div style="position: relative;" class="w-full max-w-[768px] bg-[#e7e7e9] rounded-md  h-30 flex-wrap text-center md:pt-10 pt:10
+        dark:bg-[#111318] dark:border dark:border-[#2a2d35]">
+        
+         <input type="text" id="inputText" placeholder="Enter your Tasks" class="bg-[#d9d9db] text-xl md:text-xl p-2 rounded-md dark:bg-[#111318] dark:border dark:border-[#2a2d35]">
+           <select name="" id="inputSelect" class="bg-[#d9d9db] p-2 rounded-md text-xl md:text-xl dark:bg-[#111318] dark:border dark:border-[#2a2d35]" >
+              <option id="do" value="toDo">To Do</option>
+              <option id="in-progress" value="inProgress">In Progress</option>
+              <option id="done1" value="doneOne">Done</option>
+             </select>
+             <button id="inputAddBtn" class="text-xl md:text-xl  bg-[#5B4CF5] text-white w-20 p-2 rounded-md">+Add</button>
+             <button style="position: absolute; top: 8px; right: 5px;" id="inputRemove"><i class="ri-close-large-line"></i></button> 
+         </div>
+     </div>  
+  
+    <div class="flex items-center justify-evenly flex-col gap-4 md:flex-row md:gap-0">
+        <div class="border-dashed border-2 border-[#dddddf] w-76 rounded-md ">
+            <div class="w-64 p-2 font-bold text-xl pl-3 ">To Do</div>
+            <div class="border-3 border-[#5B4CF5] w-76"></div>
+            
+              <ul id="toDoList"  class="min-h-44 border-dashed border-b-2 h-auto border-[#dddddf] min-h-[300px] p-[10px] mr-[5px]">
+                
+              </ul>
+            
+            <button id="addToDoBtn" class="bg-[#F1EDFD] mt-3 dark:bg-[#4F46E5] dark:text-white text-[#5B4CF5] hover:bg-[#4F46E5] hover:text-white w-48 ml-14 rounded-md mb-3 p-2">+Add Tasks</button>
+        </div>
+
+         <div class="border-dashed border-2 border-[#dddddf] w-76 rounded-md ">
+            <div class="w-64 p-2 font-bold text-xl pl-3 ">In Progress</div>
+            <div class="border-3 border-[#5B4CF5] w-76"></div>
+            
+                <ul id="progressList" class="min-h-44 border-dashed border-b-2 h-auto border-[#dddddf] min-h-[300px] p-[10px] mr-[5px]">
+
+                </ul>
+            
+            <button id="addProgressBtn" class=" dark:bg-[#4F46E5] dark:text-white bg-[#F1EDFD] mt-3 text-[#5B4CF5] hover:bg-[#4F46E5] hover:text-white w-48 ml-14 rounded-md mb-3  p-2">+Add Tasks</button>
+        </div>
+
+         <div class="border-dashed border-2 border-[#dddddf] w-76 rounded-md ">
+            <div class="w-64 p-2 font-bold text-xl pl-3 ">Done</div>
+            <div class="border-3 border-[#5B4CF5] w-76"></div>
+           
+                <ul id="doneList"  class="min-h-44 border-dashed border-b-2 h-auto border-[#dddddf] min-h-[300px] p-[10px] mr-[5px]]">
+
+                </ul>
+           
+            <button id="addDoneBtn" class="dark:bg-[#4F46E5] dark:text-white bg-[#F1EDFD] mt-3 text-[#5B4CF5] hover:bg-[#4F46E5] hover:text-white w-48 ml-14 mb-3 rounded-md p-2">+Add Tasks</button>
+        </div>
+    </div>
+    <div class="flex items-center justify-center gap-20 my-2 ">
+    <button id="darkMode" class="border rounded-md md:w-30 w-38 p-1 mt-3"><i class="ri-sun-line"> Dark Mode</i></button>
+    <button class="border rounded-md md:w-40 w-48 p-1 mt-3" id="chg-password"><i class="ri-lock-2-line"> Change Password</i></button>
+    <button id="logout" class="border rounded-md md:w-30 w-36 p-1 mt-3"><i class="ri-logout-box-r-line"> LogOut</i></button>
+    </div>
+ </section>
+  <script src="main.js"></script>
+ </body>
+ </html>

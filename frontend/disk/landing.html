@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Page</title>
+    <link rel="stylesheet" href="style.css">
+    <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css"
+    rel="stylesheet"
+  />
+</head>
+<body>
+  <section style="background-image:url('https://media.istockphoto.com/id/1212911887/photo/futuristic-digital-block-chain-background.jpg?b=1&s=612x612&w=0&k=20&c=WEzevRH6VMqCHb06QP0RLo_0iIin17Nnlc7dAIHzoE0=')" 
+           class="bg-no-repeat bg-cover bg-center h-auto" >
+       <nav class="flex items-center justify-between w-full text-[#ffff] bg-black/50  dark:bg-[#111827]  dark:border-[#2a2d35]">
+      <div class="flex">  
+       <i class="ri-kanban-view font-bold text-xl md:text-2xl m-2 text-[#5B4CF5]"></i>
+       <h1 class="font-bold text-xl md:text-2xl mt-2">Kanban Board</h1>
+      </div> 
+     
+      <div class="flex">
+        <button class="w-20 bg-[#5B4CF5] p-[4px] rounded-md mr-2 cursor-pointer" id="Signup">SignUp</button>
+        <button class="w-20 bg-[#5B4CF5] p-[4px] rounded-md mr-2 cursor-pointer" id="login">LogIn</button>
+     </div>
+    </nav>
+
+    <div class="flex items-center justify-center h-[50vh] flex-col">
+        <h1 class=" text-[#ffff] font-bold text-xl md:text-5xl mt-2">Plan Smarter.</h1>
+        <h1 class="text-[#5B4CF5] font-bold text-xl md:text-5xl mt-2">Work Faster.</h1>
+        <h1 class=" text-[#ffff] font-bold text-xl md:text-5xl mt-2">Finish Better.</h1>
+       <h4 class="text-[#ffff] mt-4 text-lg">Manage your workflow with drag-and-drop simplicity and real-time task tracking.</h4>
+       <button id="signup" class="w-48 font-bold mt-4 ml-4 text-[#ffff] bg-[#5B4CF5] p-[8px] rounded-md mr-2 cursor-pointer">Get Started</button>
+  </div>
+
+  <div class="h-[400px] w-full flex items-center justify-center">
+    <img class="h-[400px] w-[1100px] rounded-md"  src="./image/Screenshot From 2026-06-27 12-08-04.png" alt="">
+  </div>
+ </section> 
+ <script>
+  const signUp = document.getElementById('Signup')
+  const singup = document.getElementById('signup')
+  const logIn = document.getElementById('login')
+
+  signUp.addEventListener("click", () => {
+    location.href = "./singup.html"
+  });
+
+  singup.addEventListener("click", () => {
+    location.href = "./singup.html"
+  });
+
+  logIn.addEventListener("click", () => {
+    location.href = "./login.html"
+  });
+ </script>
+</body>
+</html>
