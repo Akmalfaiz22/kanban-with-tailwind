@@ -1,3 +1,4 @@
+import API_BASE_URL from "./config.js";
 const signUpBtn = document.getElementById('signUpBtn')
 const usernameInput = document.getElementById("usernameInput");
 const fullNameInput = document.getElementById("fullNameInput");
@@ -13,7 +14,7 @@ signUpBtn.addEventListener("click", async() => {
 };
 try {
       const response = await fetch(
-        "http://localhost:4000/api/v1/users/register",
+        `${API_BASE_URL}/api/v1/users/register`,
         {
             method: "POST",
             headers: {

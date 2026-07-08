@@ -1,3 +1,4 @@
+import API_BASE_URL from "./config.js";
 const addTaskBtn = document.getElementById('addTask')
 const inputBox = document.getElementById('inputBox')
 const inputRemove = document.getElementById('inputRemove')
@@ -139,9 +140,7 @@ changePassword.addEventListener('click', () => {
 
 logOut.addEventListener("click", async() => {
   try {
-    const response = await fetch(
-        "http://localhost:4000/api/v1/users/logout",
-        {
+    const response = await fetch(`${API_BASE_URL}/api/v1/users/logout`, {
             method: "POST",
             credentials: "include",
             // headers: {
@@ -167,13 +166,10 @@ logOut.addEventListener("click", async() => {
 
 async function getCurrentUser() {
     try {
-        const response = await fetch(
-            "http://localhost:4000/api/v1/users/current-user",
-            {
-                method: "GET",
-                credentials: "include"
-            }
-        );
+        const response = await fetch(`${API_BASE_URL}/api/v1/users/current-user`, {
+            method: "GET",
+            credentials: "include"
+        });
 
         console.log("Status:", response.status);
 
@@ -182,7 +178,7 @@ async function getCurrentUser() {
         console.log("Response:", result);
 
         if (response.ok) {
-            userName.textContent = result.message.userName;
+            userName.textContent = result.data.userName;
         }
          console.log(userName);
          console.log(result.data.userName);

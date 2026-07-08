@@ -117,10 +117,9 @@ const loginUser = asyncHandler(async (req, res) =>{
      
 // 6.Send cookie    
     const options = {
-          httpOnly: true,
-          secure: process.env.NODE_ENV === "production",
-        //   sameSite: "lax",
-        //   path: "/"
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "none"
     }
 
     return res.status(200)
@@ -148,9 +147,10 @@ const logoutUser = asyncHandler(async(req, res) => {
     }
   )
 
-  const options = {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
+    const options = {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "none"
     }
     return res.status(200)
     .clearCookie("accessToken", options)
@@ -181,10 +181,11 @@ const refreshAccessToken = asyncHandler(async(req, res) => {
          throw new ApiError(401, "Refresh token is expired or used")
        }
 
-       const options = {
-           httpOnly: true,
-           secure: process.env.NODE_ENV === "production",
-       }
+        const options = {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "none"
+        }
 
        const {accessToken, refreshToken} = 
         await generateAccessAndRefreshTokens(user._id);
