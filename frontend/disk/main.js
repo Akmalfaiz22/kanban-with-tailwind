@@ -17,6 +17,7 @@ const progressList = document.getElementById('progressList')
 const doneList = document.getElementById('doneList')
 const changePassword = document.getElementById('chg-password')
 const logOut = document.getElementById('logout')
+const userName = document.getElementById('username')
 
 let selected = null
 
@@ -161,4 +162,34 @@ logOut.addEventListener("click", async() => {
     console.error(error);
   }
 });
+
+
+
+async function getCurrentUser() {
+    try {
+        const response = await fetch(
+            "http://localhost:4000/api/v1/users/current-user",
+            {
+                method: "GET",
+                credentials: "include"
+            }
+        );
+
+        console.log("Status:", response.status);
+
+        const result = await response.json();
+
+        console.log("Response:", result);
+
+        if (response.ok) {
+            userName.textContent = result.message.userName;
+        }
+         console.log(userName);
+         console.log(result.data.userName);
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+getCurrentUser();
 
