@@ -9,6 +9,12 @@ app.use(cors({
   : [],
     credentials: true
 }))
+app.get("/", (req, res) => {
+    res.json({
+        success: true,
+        message: "Kanban API is running 🚀"
+    });
+});
 app.use(express.json({limit: "16kb"}))
 app.use(express.urlencoded({extended: true, limit: "16k"}))
 app.use(express.static("public"))
