@@ -32,7 +32,7 @@ try {
         emailInput.value = "";
         passwordInput.value = "";
  
-       location.href = "./index.html"
+       location.href = "./login"
      }else{
         result.message
      }

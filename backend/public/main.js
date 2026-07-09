@@ -1,4 +1,5 @@
 import API_BASE_URL from "./config.js";
+const app = document.getElementById("app");
 const addTaskBtn = document.getElementById('addTask')
 const inputBox = document.getElementById('inputBox')
 const inputRemove = document.getElementById('inputRemove')
@@ -135,7 +136,7 @@ inputAddBtn.addEventListener('click', () => {
 updatecount()
 
 changePassword.addEventListener('click', () => {
-  location.href = "./password.html"
+  location.href = "./password"
 })
 
 logOut.addEventListener("click", async() => {
@@ -153,7 +154,7 @@ logOut.addEventListener("click", async() => {
     const result = await response.json();
     console.log(result);
     if(response.ok){
-      location.href = "./landing.html"
+      location.href = "./"
     }
         
     
@@ -163,29 +164,30 @@ logOut.addEventListener("click", async() => {
 });
 
 
-
 async function getCurrentUser() {
     try {
-        const response = await fetch(`${API_BASE_URL}/api/v1/users/current-user`, {
-            method: "GET",
-            credentials: "include"
-        });
+        const response = await fetch(
+            `${API_BASE_URL}/api/v1/users/current-user`,
+            {
+                method: "GET",
+                credentials: "include"
+            }
+        );
 
-        console.log("Status:", response.status);
+        if (!response.ok) {
+            location.href = "./login.html";
+            return;
+        }
 
         const result = await response.json();
+        userName.textContent = result.data.userName;
+        app.classList.remove("hidden");
 
-        console.log("Response:", result);
-
-        if (response.ok) {
-            userName.textContent = result.data.userName;
-        }
-         console.log(userName);
-         console.log(result.data.userName);
     } catch (error) {
-        console.log(error);
+        console.error(error);
+
+        location.href = "./login.html";
     }
 }
 
 getCurrentUser();
-
